@@ -1,0 +1,16 @@
+name: A simple CI pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: A message for the log
+        run: echo "Hello, World! The pipeline was triggered!"
+
+      - name: List the files
+        run: ls -la
