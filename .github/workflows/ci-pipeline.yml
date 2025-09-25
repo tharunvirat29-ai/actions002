@@ -9,12 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # This new step checks out your repository's code
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: A message for the log
-        run: echo "Hello, World! The pipeline was triggered!"
+      # New step to install the linter tool
+      - name: Install yamllint
+        run: sudo apt-get install -y yamllint
 
-      - name: List the files
-        run: ls -la
+      # New step to run the linter on our file
+      - name: Lint YAML file
+        run: yamllint .github/workflows/ci-pipeline.yml
