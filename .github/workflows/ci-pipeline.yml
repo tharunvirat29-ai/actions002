@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # This new step checks out your repository's code
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
       - name: A message for the log
         run: echo "Hello, World! The pipeline was triggered!"
 
