@@ -1,31 +1,24 @@
+---
 name: A simple CI pipeline
-
 on:
   push:
-    branches: [main]
-
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-
       - name: Install yamllint
         run: sudo apt-get install -y yamllint
-
       - name: Lint YAML file
         run: yamllint .github/workflows/ci-pipeline.yml
-
-      # New step to use the secret
       - name: Use the API Key
         run: echo "The API Key is ${{ secrets.API_KEY }}"
-
       - name: Create a log file
-        run: echo "Build version ${{ env.BUILD_VERSION }} completed on $(date)" > build.log
-      # New step to create a file
-      # New step to upload the file as an artifact
+        run: echo "Build version ${{ env.BUILD_VERSION }} completed on $(date)" >
+          build.log
       - name: Upload build log
         uses: actions/upload-artifact@v4
         with:
